@@ -1,0 +1,60 @@
+[Version]
+Signature = "$Windows NT$"
+Class = Display
+ClassGuid = {4D36E968-E325-11CE-BFC1-08002BE10318}
+ClassVer = 2.0
+Provider = %ProviderName%
+CatalogFile = UpscalpIdd.cat
+DriverVer = 11/01/2026,0.1.0.0
+PnpLockdown = 1
+
+[Manufacturer]
+%ProviderName% = Upscalp,NTamd64.10.0...22000
+
+[Upscalp.NTamd64.10.0...22000]
+%DeviceName% = VirtualDisplay,UpscalpVirtualDisplay
+
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+UpscalpIdd.dll = 1
+
+[DestinationDirs]
+DriverCopy = 13
+
+[DriverCopy]
+UpscalpIdd.dll
+
+[VirtualDisplay.NT]
+Include = WUDFRD.inf
+Needs = WUDFRD.NT
+CopyFiles = DriverCopy
+
+[VirtualDisplay.NT.HW]
+Include = WUDFRD.inf
+Needs = WUDFRD.NT.HW
+AddReg = DeviceSettings
+
+[DeviceSettings]
+HKR,,UpperFilters,0x00010000,"IndirectKmd"
+HKR,WUDF,DeviceGroupId,0x00000000,"UpscalpIdd"
+
+[VirtualDisplay.NT.Services]
+Include = WUDFRD.inf
+Needs = WUDFRD.NT.Services
+
+[VirtualDisplay.NT.Wdf]
+UmdfService = UpscalpIdd,DriverService
+UmdfServiceOrder = UpscalpIdd
+UmdfKernelModeClientPolicy = AllowKernelModeClients
+
+[DriverService]
+UmdfLibraryVersion = 2.25.0
+ServiceBinary = %13%\UpscalpIdd.dll
+UmdfExtensions = IddCx0102
+
+[Strings]
+ProviderName = "Upscalp"
+DeviceName = "Upscalp Indirect Display Adapter"
+DiskName = "Upscalp Virtual Display Driver"

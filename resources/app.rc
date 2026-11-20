@@ -1,0 +1,6 @@
+#include <windows.h>
+#include "resource.h"
+
+IDI_UPSCALP ICON "upscalp.ico"
+1 RT_MANIFEST "app.manifest"
+101 RCDATA "downscale.hlsl"

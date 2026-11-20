@@ -1,0 +1,9 @@
+/build/
+/out/
+/research/
+/docs/DEVAM-NOTU.md
+/docs/desktop-4k-architecture.md
+/docs/README.local.tr.md
+/.vs/
+*.user
+*.log
